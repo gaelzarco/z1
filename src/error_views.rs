@@ -39,7 +39,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
 
                                 section(class="about_wrapper") {
                                     h1 { (status) }
-                                    p { "This page could not be found. Please head to home page." }
+                                    p { "This page could not be found. Please head to the home page." }
                                 }
 
                             }
@@ -121,7 +121,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
 
                                 section(class="about_wrapper") {
                                     h1 { (status) }
-                                    p { "Sorry, server experienced some difficulties. Try again." }
+                                    p { "Sorry, this one is on me. Please try again." }
                                 }
 
                             }
@@ -162,7 +162,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
 
                             section(class="about_wrapper") {
                                 h1 { "5XX" }
-                                p { "Serious error occured. Please head to home page." }
+                                p { "A critical error occured. Please head to the home page." }
                             }
 
                         }
@@ -202,7 +202,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
 
                             section(class="about_wrapper") {
                                 h1 { "4XX" }
-                                p { "Network error occured. Verify you have internet and try again." }
+                                p { "Network error occured. Verify you have an internet connection and try again." }
                             }
 
                         }

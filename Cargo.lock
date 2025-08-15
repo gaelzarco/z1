@@ -1569,5 +1569,4 @@ dependencies = [
  "serde_json",
  "sycamore",
  "tokio",
- "wasm-bindgen",
 ]

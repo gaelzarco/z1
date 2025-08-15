@@ -192,10 +192,9 @@ async fn get_build_paths() -> BuildPaths {
 #[engine_only_fn]
 async fn get_build_state(info: StateGeneratorInfo<()>)
     -> Result<ProjectPageState, BlamedError<anyhow::Error>> {
+    let slug = info.path;
     let data: HashMap<String, ProjectPageState> =
         serde_json::from_str(PROJECTS_JSON).unwrap();
-
-    let slug = info.path;
     data.get(&slug)
         .cloned()
         .ok_or_else(|| anyhow::anyhow!("unknown project: {}", slug).into())

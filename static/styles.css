@@ -124,7 +124,7 @@ main {
 h1,
 h2 {
   margin: 0px;
-  font-family: Dots;
+  font-family: Dots, Geist, -apple-system, sans-serif;
 }
 
 h1 {
@@ -183,6 +183,7 @@ ul.focus {
 
 .fade_in {
   opacity: 0;
+  animation: fade_in 0.25s ease-in forwards;
 }
 
 .arrow {
@@ -324,5 +325,13 @@ ul.focus {
 
   .xp_left {
     min-width: 4em;
+  }
+}
+
+
+/* Animations */
+@keyframes fade_in {
+  to {
+    opacity: 1;
   }
 }

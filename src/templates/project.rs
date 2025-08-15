@@ -2,14 +2,12 @@ use perseus::prelude::*;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use sycamore::prelude::*;
-#[cfg(client)]
-use wasm_bindgen::prelude::*;
 
 const PROJECTS_JSON: &str = include_str!("../../static/projects.json");
 
 #[derive(Serialize, Deserialize, ReactiveState, Clone)]
 #[rx(alias = "ProjectPageStateRx")]
-struct ProjectPageState {
+pub struct ProjectPageState {
     title: String,
     desc: String,
     abstr: String,
@@ -23,9 +21,6 @@ struct ProjectPageState {
 
 #[auto_scope]
 fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
-    #[cfg(client)]
-    on_mount(cx, || fade_content());
-
     let shots = (*state.screenshots.get()).clone().unwrap_or_default();
     let screenshots_section = if shots.is_empty() {
         View::empty()
@@ -213,11 +208,4 @@ pub fn get_template<G: Html>() -> Template<G> {
         .view_with_state(project_page)
         .head_with_state(head)
         .build()
-}
-
-#[cfg(client)]
-#[wasm_bindgen(module = "/src/scripts/main.js")]
-extern "C" {
-    #[wasm_bindgen(js_name = fadeContent)]
-    fn fade_content();
 }

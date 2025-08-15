@@ -1,12 +1,7 @@
 use perseus::prelude::*;
 use sycamore::prelude::*;
-#[cfg(client)]
-use wasm_bindgen::prelude::*;
 
 fn index_page<G: Html>(cx: Scope) -> View<G> {
-    #[cfg(client)]
-    on_mount(cx, || fade_content());
-
     view! {
         cx,
         main {
@@ -135,7 +130,7 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                 }
                                 p {
                                     "Software rasterizer that parses .obj files and translates "
-                                    "triangle and texture coordinates into a fully rendered raster."
+                                    "triangle coordinates into a render."
                                 }
                             }
                         }
@@ -220,11 +215,4 @@ fn head(cx: Scope) -> View<SsrNode> {
 
 pub fn get_template<G: Html>() -> Template<G> {
     Template::build("index").view(index_page).head(head).build()
-}
-
-#[cfg(client)]
-#[wasm_bindgen(module = "/src/scripts/main.js")]
-extern "C" {
-    #[wasm_bindgen(js_name = fadeContent)]
-    fn fade_content();
 }

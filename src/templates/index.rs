@@ -1,11 +1,15 @@
 use perseus::prelude::*;
 use sycamore::prelude::*;
+use crate::templates::theme;
+#[cfg(client)]
+use wasm_bindgen::prelude::*;
 
 fn index_page<G: Html>(cx: Scope) -> View<G> {
     view! {
         cx,
         main {
             section(class="content fade_in") {
+                theme::toggle_button()
 
                 section(class="profile_wrapper") {
                     div(class="profile_left") {
@@ -215,4 +219,11 @@ fn head(cx: Scope) -> View<SsrNode> {
 
 pub fn get_template<G: Html>() -> Template<G> {
     Template::build("index").view(index_page).head(head).build()
+}
+
+#[cfg(client)]
+#[wasm_bindgen(module = "/src/scripts/main.js")]
+extern "C" {
+    fn initTheme() -> String;
+    fn toggleTheme() -> String;
 }

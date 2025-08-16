@@ -2,6 +2,9 @@ use perseus::prelude::*;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use sycamore::prelude::*;
+use crate::templates::theme;
+#[cfg(client)]
+use wasm_bindgen::prelude::*;
 
 const PROJECTS_JSON: &str = include_str!("../../static/projects.json");
 
@@ -41,6 +44,7 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
     view! { cx,
         main {
             section(class="content fade_in") {
+                theme::toggle_button()
 
                 // Breadcrumb
                 nav(class="bc_wrapper") {

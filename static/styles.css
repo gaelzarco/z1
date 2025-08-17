@@ -317,6 +317,13 @@ ul.focus {
   object-fit: cover;
 }
 
+.theme_toggle {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 0px 2em 2em 0px;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   h1 {

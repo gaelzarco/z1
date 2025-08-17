@@ -18,4 +18,4 @@ ENV PERSEUS_HOST=0.0.0.0
 ENV PERSEUS_PORT=3000
 EXPOSE 3000 
 
-CMD ["./pkg/server"]
+CMD ["sh", "-c", "PERSEUS_HOST=0.0.0.0 PERSEUS_PORT=${PORT:-3000} exec ./pkg/server"]

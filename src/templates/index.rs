@@ -12,8 +12,8 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
     view! {
         cx,
         main {
+            theme::toggle_button()
             section(class="content") {
-                theme::toggle_button()
 
                 section(class="profile_wrapper") {
                     div(class="profile_left") {

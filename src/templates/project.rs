@@ -75,8 +75,8 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
 
     view! { cx,
         main {
+            theme::toggle_button()
             section(class="content") {
-                theme::toggle_button()
 
                 // Breadcrumb
                 nav(class="bc_wrapper") {

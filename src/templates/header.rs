@@ -3,6 +3,9 @@ use sycamore::prelude::*;
 
 #[engine_only_fn]
 pub fn head(cx: Scope, title: String) -> View<SsrNode> {
+    // Fix static cache
+    const VER: &str = env!("CARGO_PKG_VERSION");
+
     view! { cx,
         script { r#"(function(){
             var t=localStorage.getItem('theme');
@@ -21,8 +24,15 @@ pub fn head(cx: Scope, title: String) -> View<SsrNode> {
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title { (format!("Zarco - {}", title)) }
-        link(rel="preload", href=".perseus/static/styles.css", as="style")
-        link(rel="stylesheet", href=".perseus/static/styles.css")
+        link(
+            rel="preload",
+            href=format!(".perseus/static/styles.css?={}", VER),
+            as="style"
+        )
+        link(
+            rel="stylesheet",
+            href=format!(".perseus/static/styles.css?={}", VER),
+        )
         link(
             rel="icon",
             href=".perseus/static/assets/favicon_white.ico",

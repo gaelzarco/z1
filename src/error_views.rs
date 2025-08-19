@@ -8,10 +8,23 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
             ClientError::ServerError { status, message: _ } => match status {
                 404 => (
                     view! { cx,
+                        script { r#"(function(){
+                            var t=localStorage.getItem('theme');
+                            if(!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                            document.documentElement.setAttribute('data-theme', t);
+                        })();"# }
+                        style { r#"
+                            @media (prefers-reduced-motion: reduce) {
+                              .content {
+                                animation: none !important;
+                              }
+                            }
+                        "#}
+
                         meta(charset="UTF-8")
                         meta(name="viewport", content="width=device-width, initial-scale=1.0")
                         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-                        title { "Zarco - " (status) }
+                        title { (format!("Zarco - {}", status)) }
                         link(rel="preload", href=".perseus/static/styles.css", as="style")
                         link(rel="stylesheet", href=".perseus/static/styles.css")
                         link(
@@ -23,7 +36,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                     },
                     view! { cx,
                         main {
-                            section(class="content fade_in") {
+                            section(class="content") {
 
                                 // Breadcrumb
                                 nav(class="bc_wrapper") {
@@ -49,10 +62,23 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                 // 4xx is a client error
                 _ if (400..500).contains(&status) => (
                     view! { cx,
+                        script { r#"(function(){
+                            var t=localStorage.getItem('theme');
+                            if(!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                            document.documentElement.setAttribute('data-theme', t);
+                        })();"# }
+                        style { r#"
+                            @media (prefers-reduced-motion: reduce) {
+                              .content {
+                                animation: none !important;
+                              }
+                            }
+                        "#}
+
                         meta(charset="UTF-8")
                         meta(name="viewport", content="width=device-width, initial-scale=1.0")
                         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-                        title { "Zarco - " (status) }
+                        title { (format!("Zarco - {}", status)) }
                         link(rel="preload", href=".perseus/static/styles.css", as="style")
                         link(rel="stylesheet", href=".perseus/static/styles.css")
                         link(
@@ -64,7 +90,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                     },
                     view! { cx,
                         main {
-                            section(class="content fade_in") {
+                            section(class="content") {
 
                                 // Breadcrumb
                                 nav(class="bc_wrapper") {
@@ -90,10 +116,23 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                 // 5xx is a server error
                 _ => (
                     view! { cx,
+                        script { r#"(function(){
+                            var t=localStorage.getItem('theme');
+                            if(!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                            document.documentElement.setAttribute('data-theme', t);
+                        })();"# }
+                        style { r#"
+                            @media (prefers-reduced-motion: reduce) {
+                              .content {
+                                animation: none !important;
+                              }
+                            }
+                        "#}
+
                         meta(charset="UTF-8")
                         meta(name="viewport", content="width=device-width, initial-scale=1.0")
                         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-                        title { "Zarco - " (status) }
+                        title { (format!("Zarco - {}", status)) }
                         link(rel="preload", href=".perseus/static/styles.css", as="style")
                         link(rel="stylesheet", href=".perseus/static/styles.css")
                         link(
@@ -105,7 +144,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                     },
                     view! { cx,
                         main {
-                            section(class="content fade_in") {
+                            section(class="content") {
 
                                 // Breadcrumb
                                 nav(class="bc_wrapper") {
@@ -130,23 +169,10 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                 ),
             },
             ClientError::Panic(_) => (
-                view! { cx,
-                    meta(charset="UTF-8")
-                    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-                    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-                    title { "Zarco - 5XX " }
-                    link(rel="preload", href=".perseus/static/styles.css", as="style")
-                    link(rel="stylesheet", href=".perseus/static/styles.css")
-                    link(
-                        rel="icon",
-                        href=".perseus/static/assets/favicon_white.ico",
-                        type="image/x-icon",
-                        sizes="32x32"
-                    )
-                },
+                view! { cx, },
                 view! { cx,
                     main {
-                        section(class="content fade_in") {
+                        section(class="content") {
 
                             // Breadcrumb
                             nav(class="bc_wrapper") {
@@ -170,23 +196,10 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                 },
             ),
             ClientError::FetchError(_) => (
-                view! { cx,
-                    meta(charset="UTF-8")
-                    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-                    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-                    title { "Zarco - 4XX" }
-                    link(rel="preload", href=".perseus/static/styles.css", as="style")
-                    link(rel="stylesheet", href=".perseus/static/styles.css")
-                    link(
-                        rel="icon",
-                        href=".perseus/static/assets/favicon_white.ico",
-                        type="image/x-icon",
-                        sizes="32x32"
-                    )
-                },
+                view! { cx, },
                 view! { cx,
                     main {
-                        section(class="content fade_in") {
+                        section(class="content") {
 
                             // Breadcrumb
                             nav(class="bc_wrapper") {
@@ -210,23 +223,10 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                 },
             ),
             _ => (
-                view! { cx,
-                    meta(charset="UTF-8")
-                    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-                    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-                    title { "Zarco - ?XX" }
-                    link(rel="preload", href=".perseus/static/styles.css", as="style")
-                    link(rel="stylesheet", href=".perseus/static/styles.css")
-                    link(
-                        rel="icon",
-                        href=".perseus/static/assets/favicon_white.ico",
-                        type="image/x-icon",
-                        sizes="32x32"
-                    )
-                },
+                view! { cx, },
                 view! { cx,
                     main {
-                        section(class="content fade_in") {
+                        section(class="content") {
 
                             // Breadcrumb
                             nav(class="bc_wrapper") {

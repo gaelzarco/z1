@@ -1,14 +1,18 @@
 use perseus::prelude::*;
 use sycamore::prelude::*;
 use crate::templates::theme;
+use crate::templates::header;
 #[cfg(client)]
 use wasm_bindgen::prelude::*;
 
 fn index_page<G: Html>(cx: Scope) -> View<G> {
+    #[cfg(client)]
+    on_mount(cx, || scroll_top());
+
     view! {
         cx,
         main {
-            section(class="content fade_in") {
+            section(class="content") {
                 theme::toggle_button()
 
                 section(class="profile_wrapper") {
@@ -24,10 +28,6 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                     div(class="profile_right") {
                         h1 { "Gael Zarco" }
                         p { "Software Engineer - CS Student" }
-                        a(
-                            href=".perseus/static/GAEL_ZARCO.pdf",
-                            target="_blank", rel="noopener noreferrer"
-                        ) { "Resume" }
                     }
                 }
 
@@ -201,20 +201,7 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
 
 #[engine_only_fn]
 fn head(cx: Scope) -> View<SsrNode> {
-    view! { cx,
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title { "Zarco - Software Engineer" }
-        link(rel="preload", href=".perseus/static/styles.css", as="style")
-        link(rel="stylesheet", href=".perseus/static/styles.css")
-        link(
-            rel="icon",
-            href=".perseus/static/assets/favicon_white.ico",
-            type="image/x-icon",
-            sizes="32x32"
-        )
-    }
+    header::head(cx, String::from("Software Engineer"))
 }
 
 pub fn get_template<G: Html>() -> Template<G> {
@@ -223,7 +210,7 @@ pub fn get_template<G: Html>() -> Template<G> {
 
 #[cfg(client)]
 #[wasm_bindgen(module = "/src/scripts/main.js")]
-extern "C" {
-    fn initTheme() -> String;
-    fn toggleTheme() -> String;
+extern "C" { 
+    #[wasm_bindgen(js_name = scrollTop)]
+    fn scroll_top();
 }

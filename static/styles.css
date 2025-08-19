@@ -19,96 +19,20 @@
   /* Colors */
   --black: #0d0b0f;
   --white: #FFFFFF;
+  --black-trans: #0d0b0faa;
+  --white_trans: #FFFFFFaa;
   --gray: #A3A3A3;
   --gray-secondary: #7F7F7F;
 
-  /* Line-height */
+  /* Line-Height */
   --body-lh: 1.75;
 }
 
-@media (prefers-color-scheme: light) {
-  body {
-    background: var(--white);
-  }
-
-  h1,
-  h2 {
-    color: var(--black);
-  }
-
-  p {
-    color: var(--gray-secondary);
-  }
-
-  a,
-  li {
-    color: var(--gray);
-  }
-  
-  li.focus {
-    color: var(--gray-secondary);
-  }
-
-  .xp_left p {
-    color: var(--gray);
-  }
-
-  .xp_right a {
-    color: var(--black);
-  }
-
-  .profile_left img {
-    filter: invert(1);
-  }
-
-  .bc_item {
-    color: black;
-  }
-}
-
-
 @media (prefers-color-scheme: dark) {
-  body {
-    background: var(--black);
-  }
-
-  h1,
-  h2 {
-    color: var(--white);
-  }
-
-  p {
-    color: var(--gray);
-  }
-
-  a,
-  li {
-    color: var(--gray-secondary);
-  }
-
-  .xp_left p {
-    color: var(--gray-secondary);
-  }
-
-  .xp_right a {
-    color: var(--white);
-  }
-
-  li.focus {
-    color: var(--gray);
-  }
-
-  .arrow,
-  .bc_arrow {
-    filter: invert(1);
-  }
-
-  .bc_item {
-    color: white;
-  }
+  html:not([data-theme]) { background: var(--black); color-scheme: dark; }
 }
 
-/* Theme tokens (override these per theme) */
+/* Theme Specific */
 html[data-theme="light"] {
   --bg: var(--white);
   --h: var(--black);
@@ -120,6 +44,8 @@ html[data-theme="light"] {
   --profile-img-filter: invert(1);
   --arrow-filter: invert(0);
   --bc-item: black;
+  --tt-bg: var(--white-trans);
+  --tt-c: var(--gray-secondary);
 }
 
 html[data-theme="dark"] {
@@ -133,21 +59,31 @@ html[data-theme="dark"] {
   --profile-img-filter: invert(0);
   --arrow-filter: invert(1);
   --bc-item: white;
+  --tt-bg: var(--black-trans);
+  --tt-c: var(--gray);
 }
 
-/* Apply tokens */
-body { background: var(--bg) !important; }
-h1, h2 { color: var(--h) !important; }
-p { color: var(--p) !important; }
-a, li { color: var(--text-a) !important; }
-li.focus { color: var(--li-focus) !important; }
-.xp_left p { color: var(--xp-left-p) !important; }
-.xp_right a { color: var(--xp-right-a) !important; }
-.profile_left img { filter: var(--profile-img-filter) !important; }
-.arrow, .bc_arrow { filter: var(--arrow-filter) !important; }
-.bc_item { color: var(--bc-item) !important; }
+body { background: var(--bg); }
+h1, h2 { color: var(--h); }
+p { color: var(--p); }
+a, li { color: var(--text-a); }
+li.focus { color: var(--li-focus); }
+.xp_left p { color: var(--xp-left-p); }
+.xp_right a { color: var(--xp-right-a); }
+.profile_left img { filter: var(--profile-img-filter); }
+.arrow, .bc_arrow { filter: var(--arrow-filter); }
+.bc_item { color: var(--bc-item); }
+.theme_toggle {
+  background-color: var(--tt-bg); 
+  color: var(--tt-c);
+  border: 1px solid var(--tt-c);
+}
 
 /* Tag Styles */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: Geist, -apple-system, sans-serif;
   margin: 0;
@@ -208,19 +144,14 @@ ul.focus {
   list-style-type: none;
 }
 
-
 /* Class Styles */
 .content {
   max-width: 500px;
   width: 100%;
   padding: 7em 1em;
-  opacity: 1;
-  transition: opacity 0.4s ease-in-out;
-}
-
-.fade_in {
-  opacity: 0;
-  animation: fade_in 0.25s ease-in forwards;
+  animation: fade_in 250ms ease-in forwards;
+  animation-delay: 1ms;
+  animation-fill-mode: backwards;
 }
 
 .arrow {
@@ -242,6 +173,8 @@ ul.focus {
 }
 
 .profile_right {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -307,7 +240,7 @@ ul.focus {
 .bc_item {
   display: flex;
   gap: 0.375em;
-  font-family: Dots;
+  font-family: Dots, Geist, -apple-system, sans-serif;
 }
 
 .res_img {
@@ -317,11 +250,22 @@ ul.focus {
   object-fit: cover;
 }
 
-.theme_toggle {
+.theme_toggle_container {
   position: fixed;
   bottom: 0;
   right: 0;
   margin: 0px 2em 2em 0px;
+}
+
+.theme_toggle {
+  font-family: Dots, Geist, -apple-system, sans-serif;
+  padding: 1em 1em;
+  border-radius: 100px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  gap: 0.5em;
 }
 
 /* Responsive Styles */
@@ -375,7 +319,6 @@ ul.focus {
 
 /* Animations */
 @keyframes fade_in {
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

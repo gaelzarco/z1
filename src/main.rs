@@ -1,4 +1,5 @@
 mod templates;
+mod components;
 mod error_views;
 
 use perseus::prelude::*;
@@ -9,6 +10,6 @@ pub fn main<G: Html>() -> PerseusApp<G> {
         .template(crate::templates::index::get_template())
         .template(crate::templates::project::get_template())
         .error_views(crate::error_views::get_error_views())
-        .static_alias("/gael_zarco_resume.pdf", "./static/GAEL_ZARCO.pdf")
+        .static_alias("/resume", "./static/GAEL_ZARCO.pdf")
 }
 

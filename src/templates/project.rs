@@ -2,10 +2,8 @@ use perseus::prelude::*;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use sycamore::prelude::*;
-use crate::templates::theme;
-use crate::templates::header;
-#[cfg(client)]
-use wasm_bindgen::prelude::*;
+use crate::components::theme;
+use crate::components::head;
 
 const PROJECTS_JSON: &str = include_str!("../../static/projects.json");
 
@@ -25,9 +23,6 @@ pub struct ProjectPageState {
 
 #[auto_scope]
 fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
-    #[cfg(client)]
-    on_mount(cx, || scroll_top());
-
     let tools  = create_memo(cx, || state.tools.get().to_vec());
     let skills = create_memo(cx, || state.skills.get().to_vec());
 
@@ -171,7 +166,7 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
 
 #[engine_only_fn]
 fn head(cx: Scope, props: ProjectPageState) -> View<SsrNode> {
-    header::head(cx, props.title)
+    head::builder(cx, props.title)
 }
 
 #[engine_only_fn]
@@ -200,11 +195,4 @@ pub fn get_template<G: Html>() -> Template<G> {
         .view_with_state(project_page)
         .head_with_state(head)
         .build()
-}
-
-#[cfg(client)]
-#[wasm_bindgen(module = "/src/scripts/main.js")]
-extern "C" { 
-    #[wasm_bindgen(js_name = scrollTop)]
-    fn scroll_top();
 }

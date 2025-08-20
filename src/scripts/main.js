@@ -1,30 +1,25 @@
 export function initTheme() {
   const html = document.documentElement;
-  const existing = html.getAttribute("data-theme");
+  const existingTheme = html.getAttribute("data-theme");
 
-  if (existing) return existing;
+  if (existingTheme) return existingTheme;
 
-  const saved = localStorage.getItem("theme");
+  const savedTheme = localStorage.getItem("theme");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const current = saved || (prefersDark ? "dark" : "light");
+  const current = savedTheme || (prefersDark ? "dark" : "light");
 
   html.setAttribute("data-theme", current);
+  localStorage.setItem("theme", current);
 
   return current;
 }
 
 export function toggleTheme() {
-  const el = document.documentElement;
-  const theme = el.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  const html = document.documentElement;
+  const theme = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
 
-  el.setAttribute("data-theme", theme);
+  html.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
 
   return theme;
-}
-
-export function scrollTop() {
-  setTimeout(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, 1);
 }

@@ -28,11 +28,6 @@
   --body-lh: 1.75;
 }
 
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme]) { background: var(--black); color-scheme: dark; }
-}
-
-/* Theme Specific */
 html[data-theme="light"] {
   --bg: var(--white);
   --bgt: var(--white-trans);
@@ -84,10 +79,6 @@ li.focus { color: var(--li-focus); }
 }
 
 /* Tag Styles */
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   font-family: Geist, -apple-system, sans-serif;
   margin: 0;
@@ -153,7 +144,6 @@ ul.focus {
   max-width: 500px;
   width: 100%;
   padding: 7em 1em;
-  animation: fade_in 250ms ease-in forwards;
   animation-delay: 1ms;
 }
 
@@ -290,13 +280,13 @@ ul.focus {
   }
 
   h2 {
-    font-size: 1em;
+    font-size: 1.1em;
   }
 
   p,
   li,
   a {
-    font-size: 0.875em;
+    font-size: 0.95em;
   }
 
   .content {
@@ -329,11 +319,4 @@ ul.focus {
   .xp_left {
     min-width: 4em;
   }
-}
-
-
-/* Animations */
-@keyframes fade_in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
 }

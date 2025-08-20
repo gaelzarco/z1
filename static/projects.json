@@ -2,7 +2,7 @@
   "rgx": {
     "title": "RGX",
     "desc": "Software Rasterizer",
-    "abstr": "CPU-based rendering system that converts vector graphics into pixels in screen-space. Parses .obj files and performs transformations, shading, and rasterization to render a 3D image.",
+    "abstr": "CPU-based rendering system that converts pixel data into 3D graphics. Parses .obj files and performs transformations, shading, and rasterization to render a 3D image.",
     "goal": "Build a simple 3D-rendering pipeline to understand basic rasterization with a focus on limiting external dependencies.",
     "tools": ["Rust"],
     "skills": ["Linear Algebra", "File/String Parsing", "3D-Rendering Pipeline", "Rasterization"],

@@ -1,18 +1,30 @@
-use perseus::prelude::*;
 use sycamore::prelude::*;
 
-#[engine_only_fn]
-pub fn head(cx: Scope, title: String) -> View<SsrNode> {
-    // Fix static cache
+#[component]
+pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
     const VER: &str = env!("CARGO_PKG_VERSION");
 
-    view! { cx,
-        script { r#"(function(){
-            var t=localStorage.getItem('theme');
-            if(!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', t);
-        })();"# }
+    view! {cx,
+        script { r#"
+            (() => {
+                let t = localStorage.getItem('theme');
+                if (!t) {
+                    t = window.matchMedia('(prefers-color-scheme: dark)')
+                        .matches ? 'dark' : 'light';
+                };
+                document.documentElement.setAttribute('data-theme', t);
+            })();
+            "# }
         style { r#"
+            .content {
+              animation: fade_in 250ms ease-in forwards;
+            }
+
+            @keyframes fade_in {
+              from { opacity: 0; }
+              to   { opacity: 1; }
+            }
+
             @media (prefers-reduced-motion: reduce) {
               .content {
                 animation: none !important;
@@ -41,4 +53,3 @@ pub fn head(cx: Scope, title: String) -> View<SsrNode> {
         )
     }
 }
-

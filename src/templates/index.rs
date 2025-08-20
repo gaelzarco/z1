@@ -1,14 +1,9 @@
 use perseus::prelude::*;
 use sycamore::prelude::*;
-use crate::templates::theme;
-use crate::templates::header;
-#[cfg(client)]
-use wasm_bindgen::prelude::*;
+use crate::components::theme;
+use crate::components::head;
 
 fn index_page<G: Html>(cx: Scope) -> View<G> {
-    #[cfg(client)]
-    on_mount(cx, || scroll_top());
-
     view! {
         cx,
         main {
@@ -60,7 +55,7 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                     )
                                 }
                                 p {
-                                    "Built full-stack applications using WordPress, PHP, and Apache "
+                                    "Built full-stack web applications using PHP "
                                     "with a focus on reducing external dependencies. Met tight "
                                     "deadlines and project milestones while simultaneously "
                                     "incorporating client feedback."
@@ -84,8 +79,8 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                     )
                                 }
                                 p {
-                                    "Provided IT support, meeting Service Level Agreement "
-                                    "requirements, to large health clinics and consumer markets "
+                                    "Provided IT support, meeting Service Level Agreements"
+                                    ", to health clinics and other businesses "
                                     "across the US. Reported directly to Director of Operations "
                                     "to track initiatives and discuss objectives to improve "
                                     "client feedback and support efficiency."
@@ -109,9 +104,9 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                     )
                                 }
                                 p {
-                                    "Increased front-end functionality, security, and performance "
-                                    "using React.js and AWS Lambda. Improved API response-times "
-                                    "and participated in an Agile team environment."
+                                    "Developed front-end functionality with a focus on security "
+                                    "using React.js. Improved application responsiveness and user "
+                                    " experience in a collaborative team environment."
                                 }
                             }
                         } }
@@ -201,16 +196,9 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
 
 #[engine_only_fn]
 fn head(cx: Scope) -> View<SsrNode> {
-    header::head(cx, String::from("Software Engineer"))
+    head::builder(cx, String::from("Software Engineer"))
 }
 
 pub fn get_template<G: Html>() -> Template<G> {
     Template::build("index").view(index_page).head(head).build()
-}
-
-#[cfg(client)]
-#[wasm_bindgen(module = "/src/scripts/main.js")]
-extern "C" { 
-    #[wasm_bindgen(js_name = scrollTop)]
-    fn scroll_top();
 }

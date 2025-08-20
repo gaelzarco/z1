@@ -1570,4 +1570,5 @@ dependencies = [
  "sycamore",
  "tokio",
  "wasm-bindgen",
+ "web-sys",
 ]

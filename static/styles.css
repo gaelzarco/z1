@@ -101,7 +101,7 @@ main {
 h1,
 h2 {
   margin: 0px;
-  font-family: Dots, Geist, -apple-system, sans-serif;
+  font-family: Dots;
 }
 
 h1 {
@@ -254,7 +254,7 @@ ul.focus {
 .bc_item {
   display: flex;
   gap: 0.375em;
-  font-family: Dots, Geist, -apple-system, sans-serif;
+  font-family: Dots;
 }
 
 .res_img {
@@ -273,7 +273,7 @@ ul.focus {
 }
 
 .theme_toggle {
-  font-family: Dots, Geist, -apple-system, sans-serif;
+  font-family: Dots;
   padding: 1em 1em;
   border-radius: 100px;
 	backdrop-filter: blur(0.5em);

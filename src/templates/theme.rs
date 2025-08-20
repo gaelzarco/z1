@@ -4,14 +4,12 @@ use wasm_bindgen::prelude::*;
 
 #[component]
 pub fn toggle_button<G: Html>(cx: Scope) -> View<G> {
-    let theme = create_signal(cx, String::from("light"));
-    #[cfg(client)]
-    on_mount(cx, || theme.set(init_theme()));
-
-    let icon = create_memo(cx, || {
-        if theme.get().as_str() == "dark" { ".perseus/static/icons/sun.svg" }
-        else { ".perseus/static/icons/moon.svg" }
+    let theme = create_signal(cx, {
+        #[cfg(client)] { init_theme() }
+        #[cfg(not(client))] { String::from("light") }
     });
+
+    let icon  = create_memo(cx, || if theme.get().as_str() == "dark" { ".perseus/static/icons/sun.svg" } else { ".perseus/static/icons/moon.svg" });
     let label = create_memo(cx, || if theme.get().as_str() == "dark" { "Light" } else { "Dark" });
     let alt   = create_memo(cx, || if theme.get().as_str() == "dark" { "Sun" } else { "Moon" });
 

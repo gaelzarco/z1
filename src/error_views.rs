@@ -172,23 +172,11 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                 view! { cx, },
                 view! { cx,
                     main {
-                        section(class="content") {
+                        section(class="modal") {
 
-                            // Breadcrumb
-                            nav(class="bc_wrapper") {
-                                a(class="bc_item", href="/") {
-                                    img(
-                                        class="bc_arrow",
-                                        src=".perseus/static/icons/arrow-left.svg",
-                                        alt="arrow"
-                                    )
-                                    "Home"
-                                }
-                            }
-
-                            section(class="about_wrapper") {
+                            section {
                                 h1 { "5XX" }
-                                p { "A critical error occured. Please head to the home page." }
+                                p { "An internal error occured. Please try again." }
                             }
 
                         }
@@ -199,21 +187,9 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                 view! { cx, },
                 view! { cx,
                     main {
-                        section(class="content") {
+                        section(class="modal") {
 
-                            // Breadcrumb
-                            nav(class="bc_wrapper") {
-                                a(class="bc_item", href="/") {
-                                    img(
-                                        class="bc_arrow",
-                                        src=".perseus/static/icons/arrow-left.svg",
-                                        alt="arrow"
-                                    )
-                                    "Home"
-                                }
-                            }
-
-                            section(class="about_wrapper") {
+                            section {
                                 h1 { "4XX" }
                                 p { "Network error occured. Verify you have an internet connection and try again." }
                             }
@@ -226,22 +202,10 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                 view! { cx, },
                 view! { cx,
                     main {
-                        section(class="content") {
+                        section(class="modal") {
 
-                            // Breadcrumb
-                            nav(class="bc_wrapper") {
-                                a(class="bc_item", href="/") {
-                                    img(
-                                        class="bc_arrow",
-                                        src=".perseus/static/icons/arrow-left.svg",
-                                        alt="arrow"
-                                    )
-                                    "Home"
-                                }
-                            }
-
-                            section(class="about_wrapper") {
-                                h1 { "?XX" }
+                            section {
+                                h1 { "5XX" }
                                 p { "An internal error occured. Please try again." }
                             }
 

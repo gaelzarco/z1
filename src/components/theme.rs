@@ -14,7 +14,7 @@ pub fn toggle_button<G: Html>(cx: Scope) -> View<G> {
             button(class="theme_toggle", aria-label="Toggle theme",
                 on:click=move |_| { #[cfg(client)] theme.set(toggle_theme()); }
             ) {
-                img(class="arrow", src="", alt="")
+                img(class="arrow", src="", alt="Sun or moon depending on theme setting")
             }
         }
     }

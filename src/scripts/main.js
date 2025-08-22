@@ -8,7 +8,7 @@ export function initTheme() {
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const current = savedTheme || (prefersDark ? "dark" : "light");
 
-  html.setAttribute("data-theme", current);
+  document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("theme", current);
 
   return current;
@@ -18,7 +18,7 @@ export function toggleTheme() {
   const html = document.documentElement;
   const theme = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
 
-  html.setAttribute("data-theme", theme);
+  document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
 
   return theme;

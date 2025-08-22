@@ -29,9 +29,7 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                 section(class="about_wrapper") {
                     h2 { "About" }
                     p {
-                        "Experienced in web development and IT support. Seeking part-time and "
-                        "internship opportunities while pursuing a bachelor's in computer "
-                        "science."
+                        "Experienced in web development and IT support. Seeking part-time and internship opportunities while pursuing a bachelor's in computer science."
                     }
                 }
 
@@ -55,10 +53,7 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                     )
                                 }
                                 p {
-                                    "Built full-stack web applications using PHP "
-                                    "with a focus on reducing external dependencies. Met tight "
-                                    "deadlines and project milestones while simultaneously "
-                                    "incorporating client feedback."
+                                    "Built full-stack web applications using PHP with a focus on reducing external dependencies. Met tight deadlines and project milestones while simultaneously incorporating client feedback."
                                 }
                             }
                         }
@@ -79,11 +74,7 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                     )
                                 }
                                 p {
-                                    "Provided IT support, meeting Service Level Agreements"
-                                    ", to health clinics and other businesses "
-                                    "across the US. Reported directly to Director of Operations "
-                                    "to track initiatives and discuss objectives to improve "
-                                    "client feedback and support efficiency."
+                                    "Provided IT support, meeting Service Level Agreements, to health clinics and other businesses across the US. Reported directly to Director of Operations to track initiatives and discuss objectives to improve client feedback and support efficiency."
                                 }
                             }
                         }
@@ -104,9 +95,7 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                     )
                                 }
                                 p {
-                                    "Developed front-end functionality with a focus on security "
-                                    "using React.js. Improved application responsiveness and user "
-                                    " experience in a collaborative team environment."
+                                    "Developed front-end functionality with a focus on security using React.js. Improved application responsiveness and user experience in a collaborative team environment."
                                 }
                             }
                         } }
@@ -128,8 +117,7 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                     )
                                 }
                                 p {
-                                    "Software rasterizer that parses .obj files and translates "
-                                    "triangle coordinates into a render."
+                                    "Software rasterizer that parses .obj files and translates triangle coordinates into a render."
                                 }
                             }
                         }

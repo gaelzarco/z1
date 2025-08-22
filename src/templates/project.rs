@@ -190,9 +190,9 @@ async fn get_build_state(info: StateGeneratorInfo<()>)
 
 pub fn get_template<G: Html>() -> Template<G> {
     Template::build("project")
-        .build_paths_fn(get_build_paths)
-        .build_state_fn(get_build_state)
         .view_with_state(project_page)
         .head_with_state(head)
+        .build_paths_fn(get_build_paths)
+        .build_state_fn(get_build_state)
         .build()
 }

@@ -1,9 +1,7 @@
 [package]
 name = "z1"
-version = "0.1.2"
+version = "0.2.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 # Dependencies for the engine and the browser go here
 [dependencies]
@@ -17,10 +15,8 @@ anyhow = "1.0.99"
 # Engine-only dependencies go here
 [target.'cfg(engine)'.dependencies]
 tokio = { version = "1", features = [ "macros", "rt", "rt-multi-thread" ] }
-perseus-axum = { version = "=0.4.2", features = [ "dflt-server" ] }
+perseus-warp = { version = "0.4.2", features = [ "dflt-server" ] }
+warp = { package = "warp-fix-171", version = "0.3" }
 
 # Browser-only dependencies go here
 [target.'cfg(client)'.dependencies]
-
-[lints.rust]
-unexpected_cfgs = { level = "warn", check-cfg = ['cfg(client)'] }

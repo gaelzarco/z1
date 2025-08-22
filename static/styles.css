@@ -41,6 +41,8 @@ html[data-theme="light"] {
   --arrow-filter: invert(0);
   --bc-item: black;
   --border: var(--gray-secondary);
+  --label:"Dark";
+  --icon:url("/moon");
 }
 
 html[data-theme="dark"] {
@@ -56,6 +58,8 @@ html[data-theme="dark"] {
   --arrow-filter: invert(1);
   --bc-item: white;
   --border: var(--gray);
+  --label:"Light";
+  --icon:url("/sun");
 }
 
 body { background: var(--bg); }
@@ -78,10 +82,38 @@ li.focus { color: var(--li-focus); }
   border: 1px solid var(--border);
 }
 
+.theme_toggle::before{
+  content:"";
+  display: flex;
+  align-items:center;
+  width: 1.2em;
+  height:1.2em;
+  filter: var(--arrow-filter);
+  background-color: black;
+  -webkit-mask-image: var(--icon);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: 100% 100%;
+          mask-image: var(--icon);
+          mask-repeat: no-repeat;
+          mask-position: center;
+          mask-size: 100% 100%;
+}
+
+.theme_toggle::after{
+  content: var(--label);
+}
+
 /* Tag Styles */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: Geist, -apple-system, sans-serif;
+  display: block;
   margin: 0;
+  padding: 0;
 }
 
 main {
@@ -144,7 +176,8 @@ ul.focus {
   max-width: 500px;
   width: 100%;
   padding: 7em 1em;
-  animation-delay: 1ms;
+  overflow-wrap: anywhere;        /* modern */
+  word-break: break-word;         /* fallback for some WebKit */
 }
 
 .modal {
@@ -265,12 +298,12 @@ ul.focus {
 .theme_toggle {
   font-family: Dots;
   padding: 1em 1em;
-  border-radius: 100px;
+  border-radius: 5em;
 	backdrop-filter: blur(0.5em);
   display: flex;
   align-items: center;
   margin-bottom: 0;
-  gap: 0.5em;
+  gap: 0.25em;
 }
 
 /* Responsive Styles */

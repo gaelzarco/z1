@@ -14,7 +14,7 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
                 };
                 document.documentElement.setAttribute('data-theme', t);
             })();
-            "# }
+        "# }
         style { r#"
             .content {
               animation: fade_in 250ms ease-in forwards;

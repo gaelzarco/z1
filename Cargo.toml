@@ -1,6 +1,6 @@
 [package]
 name = "z1"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 
 # Dependencies for the engine and the browser go here
@@ -15,8 +15,7 @@ anyhow = "1.0.99"
 # Engine-only dependencies go here
 [target.'cfg(engine)'.dependencies]
 tokio = { version = "1", features = [ "macros", "rt", "rt-multi-thread" ] }
-perseus-warp = { version = "0.4.2", features = [ "dflt-server" ] }
-warp = { package = "warp-fix-171", version = "0.3" }
+perseus-axum = { version = "=0.4.2", features = [ "dflt-server" ] }
 
 # Browser-only dependencies go here
 [target.'cfg(client)'.dependencies]

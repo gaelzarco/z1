@@ -1,5 +1,5 @@
 # --- build stage ---
-FROM rust:1.79-slim AS build
+FROM rust:1.82-slim AS build
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates pkg-config openssl libssl-dev binaryen && rm -rf /var/lib/apt/lists/*
@@ -8,20 +8,20 @@ RUN cargo install perseus-cli --locked && cargo install wasm-bindgen-cli --locke
 
 WORKDIR /app
 COPY . .
-
 RUN perseus deploy && chmod +x ./pkg/server
 
 # --- runtime stage ---
-FROM debian:bookworm-slim
+FROM archlinux:latest
 
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && rm -rf /var/lib/apt/lists/*
-RUN useradd -m -u 10001 -s /usr/sbin/nologin appuser
+RUN mkdir -p /etc/ssl/certs
+COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 WORKDIR /app
-COPY --from=build /app/pkg /app/pkg
+COPY --from=build --chown=65534:65534 /app/pkg /app/pkg
+USER 65534:65534
 
-USER appuser
-
+ENV PERSEUS_HOST=0.0.0.0
+ENV PERSEUS_PORT=3000
 EXPOSE 3000
 
 CMD ["sh","-c","PERSEUS_HOST=0.0.0.0 PERSEUS_PORT=3000 exec /app/pkg/server"]

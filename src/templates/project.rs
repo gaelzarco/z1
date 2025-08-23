@@ -9,7 +9,7 @@ const PROJECTS_JSON: &str = include_str!("../../static/projects.json");
 
 #[derive(Serialize, Deserialize, ReactiveState, Clone)]
 #[rx(alias = "ProjectPageStateRx")]
-pub struct ProjectPageState {
+struct ProjectPageState {
     title: String,
     desc: String,
     abstr: String,
@@ -178,21 +178,17 @@ async fn get_build_paths() -> BuildPaths {
 }
 
 #[engine_only_fn]
-async fn get_build_state(info: StateGeneratorInfo<()>)
-    -> Result<ProjectPageState, BlamedError<anyhow::Error>> {
+async fn get_build_state(info: StateGeneratorInfo<()>) -> ProjectPageState {
     let slug = info.path;
-    let data: HashMap<String, ProjectPageState> =
-        serde_json::from_str(PROJECTS_JSON).unwrap();
-    data.get(&slug)
-        .cloned()
-        .ok_or_else(|| anyhow::anyhow!("unknown project: {}", slug).into())
+    let data: HashMap<String, ProjectPageState> = serde_json::from_str(PROJECTS_JSON).unwrap();
+    data.get(&slug).cloned().unwrap()
 }
 
 pub fn get_template<G: Html>() -> Template<G> {
     Template::build("project")
+        .build_state_fn(get_build_state)
+        .build_paths_fn(get_build_paths)
         .view_with_state(project_page)
         .head_with_state(head)
-        .build_paths_fn(get_build_paths)
-        .build_state_fn(get_build_state)
         .build()
 }

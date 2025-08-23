@@ -4,7 +4,7 @@ use wasm_bindgen::prelude::*;
 
 #[component]
 pub fn toggle_button<G: Html>(cx: Scope) -> View<G> {
-    let theme = create_signal(cx, {
+    let _theme = create_signal(cx, {
         #[cfg(client)] { init_theme() }
         #[cfg(engine)] { String::from("") }
     });
@@ -12,9 +12,8 @@ pub fn toggle_button<G: Html>(cx: Scope) -> View<G> {
     view! { cx,
         div(class="theme_toggle_container") {
             button(class="theme_toggle", aria-label="Toggle theme",
-                on:click=move |_| { #[cfg(client)] theme.set(toggle_theme()); }
+                on:click=move |_| { #[cfg(client)] _theme.set(toggle_theme()); }
             ) {
-                img(class="arrow", src="", alt="")
             }
         }
     }

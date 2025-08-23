@@ -78,7 +78,6 @@ li.focus { color: var(--li-focus); }
   border: 1px solid var(--border);
 }
 
-/* Tag Styles */
 body {
   font-family: Geist, "SF Pro", -apple-system, sans-serif;
   display: block;
@@ -292,6 +291,10 @@ ul.focus {
   p,
   li,
   a {
+    font-size: 0.95em;
+  }
+
+  .theme_toggle::after {
     font-size: 0.95em;
   }
 

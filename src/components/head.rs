@@ -100,6 +100,8 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
 
             .theme_toggle::after{
               content: var(--label);
+              font-size: 1em;
+              margin: 0;
             }
             @media (prefers-reduced-motion: reduce) {
               .content {

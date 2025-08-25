@@ -92,8 +92,8 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                     main {
                         section(class="modal") {
                             section {
-                                h1 { "5XX" }
-                                p { "An internal error occured. Please try again." }
+                                h1 { "4XX" }
+                                p { "Something went wrong. Please try again." }
                             }
                         }
                     }

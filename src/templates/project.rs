@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use sycamore::prelude::*;
 use crate::components::theme;
+use crate::components::lang;
 use crate::components::head;
 
 const PROJECTS_JSON: &str = include_str!("../../static/projects.json");
@@ -10,23 +11,30 @@ const PROJECTS_JSON: &str = include_str!("../../static/projects.json");
 #[derive(Serialize, Deserialize, ReactiveState, Clone)]
 #[rx(alias = "ProjectPageStateRx")]
 struct ProjectPageState {
-    title: String,
-    desc: String,
-    abstr: String,
-    goal: String,
+    slug: String,
     tools: Vec<String>,
     skills: Vec<String>,
+    skills_spanish: Vec<String>,
     screenshots: Option<HashMap<String, String>>,
-    result: String,
     links: Vec<Vec<String>>,
 }
 
 #[auto_scope]
 fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
     let tools  = create_memo(cx, || state.tools.get().to_vec());
-    let skills = create_memo(cx, || state.skills.get().to_vec());
 
-    // Flatten screenshots HashMap -> Vec<(src, alt)>
+    let home_url = t!(cx, "home_url");
+    let home_label = t!(cx, "home_label");
+    let is_es = home_label != "Home";
+
+    let skills = create_memo(cx, move || {
+        if is_es {
+            state.skills_spanish.get().to_vec()
+        } else {
+            state.skills.get().to_vec()
+        }
+    });
+
     let shots = create_memo(cx, || {
         (*state.screenshots.get())
             .clone()
@@ -35,7 +43,6 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
             .collect::<Vec<(String, String)>>()
     });
 
-    // Flatten links Vec<Vec<String>> -> Vec<(label, text, href)>
     let links = create_memo(cx, || {
         state.links.get().to_vec().into_iter().map(|row| {
             let label = row.get(0).cloned().unwrap_or_default();
@@ -44,6 +51,38 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
             (label, text, href)
         }).collect::<Vec<_>>()
     });
+
+    let slug = state.slug.get();
+    let (title_t, desc_t, abstr_t, goal_t, result_t) = match slug.as_str() {
+        "rgx" => (
+            t!(cx, "proj_one_title"),
+            t!(cx, "proj_one_desc"),
+            t!(cx, "proj_one_abstr"),
+            t!(cx, "proj_one_goal"),
+            t!(cx, "proj_one_result"),
+        ),
+        "space" => (
+            t!(cx, "proj_two_title"),
+            t!(cx, "proj_two_desc"),
+            t!(cx, "proj_two_abstr"),
+            t!(cx, "proj_two_goal"),
+            t!(cx, "proj_two_result"),
+        ),
+        "moxie" => (
+            t!(cx, "proj_three_title"),
+            t!(cx, "proj_three_desc"),
+            t!(cx, "proj_three_abstr"),
+            t!(cx, "proj_three_goal"),
+            t!(cx, "proj_three_result"),
+        ),
+        _ => (
+            t!(cx, "projects_header"),
+            String::new(),
+            String::new(),
+            String::new(),
+            String::new(),
+        ),
+    };
 
     let screenshots_view = move || {
         let shots_vec = shots.get();
@@ -59,7 +98,7 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
             );
             view! { cx,
                 section(class="generic_wrapper") {
-                    h2 { "Screenshots" }
+                    h2 { (t!(cx, "screenshots_header")) }
                     (frag)
                 }
             }
@@ -70,41 +109,38 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
 
     view! { cx,
         main {
+            lang::toggle_button()
             theme::toggle_button()
             section(class="content") {
 
-                // Breadcrumb
                 nav(class="bc_wrapper") {
-                    a(class="bc_item", href="/") {
-                        img(class="bc_arrow", src=".perseus/static/icons/arrow-left.svg", alt="arrow")
-                        "Home"
+                    a(class="bc_item", href=(home_url)) {
+                        img(class="bc_arrow", src=".perseus/static/icons/arrow-left.svg", alt=(t!(cx, "alt_arrow")))
+                        (t!(cx, "home_label"))
                     }
                 }
 
-                // Title
                 section(class="about_wrapper") {
-                    h1 { (state.title.get()) }
-                    p  { (state.desc.get()) }
+                    h1 { (title_t.clone()) }
+                    p  { (desc_t.clone()) }
                 }
 
-                // Abstract
                 section(class="about_wrapper") {
-                    h2 { "Abstract" }
-                    p  { (state.abstr.get()) }
+                    h2 { (t!(cx, "abstract_header")) }
+                    p  { (abstr_t.clone()) }
                 }
 
-                // Methods
                 section(class="generic_wrapper") {
-                    h2 { "Methods" }
+                    h2 { (t!(cx, "methods_header")) }
                     section(class="xp_item_wrapper") {
-                        // Goal
+
                         div(class="xp_item") {
-                            div(class="xp_left")  { p { "Goal" } }
-                            div(class="xp_right") { p { (state.goal.get()) } }
+                            div(class="xp_left")  { p { (t!(cx, "goal_label")) } }
+                            div(class="xp_right") { p { (goal_t.clone()) } }
                         }
-                        // Tools
+
                         div(class="xp_item") {
-                            div(class="xp_left")  { p { "Tools" } }
+                            div(class="xp_left")  { p { (t!(cx, "tools_label")) } }
                             div(class="xp_right") {
                                 ul(class="focus") {
                                     (View::new_fragment(
@@ -115,9 +151,9 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
                                 }
                             }
                         }
-                        // Skills
+
                         div(class="xp_item") {
-                            div(class="xp_left")  { p { "Skills" } }
+                            div(class="xp_left")  { p { (t!(cx, "skills_label")) } }
                             div(class="xp_right") {
                                 ul(class="focus") {
                                     (View::new_fragment(
@@ -131,18 +167,15 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
                     }
                 }
 
-                // Screenshots
                 (screenshots_view())
 
-                // Results
                 section(class="about_wrapper") {
-                    h2 { "Results" }
-                    p  { (state.result.get()) }
+                    h2 { (t!(cx, "results_header")) }
+                    p  { (result_t.clone()) }
                 }
 
-                // Links
                 section(class="generic_wrapper") {
-                    h2 { "Links" }
+                    h2 { (t!(cx, "links_header")) }
                     section(class="xp_item_wrapper") {
                         (View::new_fragment(
                             links.get().iter().cloned().map(|(label, text, href)| view! { cx,
@@ -151,7 +184,7 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
                                     div(class="xp_right") {
                                         a(href=href, target="_blank", rel="noopener noreferrer") {
                                             (text)
-                                            img(class="arrow", src=".perseus/static/icons/arrow-top-right.svg", alt="Arrow")
+                                            img(class="arrow", src=".perseus/static/icons/arrow-top-right.svg", alt=(t!(cx, "alt_arrow")))
                                         }
                                     }
                                 }
@@ -166,7 +199,13 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
 
 #[engine_only_fn]
 fn head(cx: Scope, props: ProjectPageState) -> View<SsrNode> {
-    head::builder(cx, props.title)
+    let title = match props.slug.as_str() {
+        "rgx"   => t!(cx, "proj_one_title"),
+        "space" => t!(cx, "proj_two_title"),
+        "moxie" => t!(cx, "proj_three_title"),
+        _       => t!(cx, "projects_header"),
+    };
+    head::builder(cx, title)
 }
 
 #[engine_only_fn]
@@ -181,7 +220,16 @@ async fn get_build_paths() -> BuildPaths {
 async fn get_build_state(info: StateGeneratorInfo<()>) -> ProjectPageState {
     let slug = info.path;
     let data: HashMap<String, ProjectPageState> = serde_json::from_str(PROJECTS_JSON).unwrap();
-    data.get(&slug).cloned().unwrap()
+    let mut state = data.get(&slug).cloned().unwrap_or_else(|| ProjectPageState {
+        slug: String::new(),
+        tools: vec![],
+        skills: vec![],
+        skills_spanish: vec![],
+        screenshots: None,
+        links: vec![],
+    });
+    state.slug = slug;
+    state
 }
 
 pub fn get_template<G: Html>() -> Template<G> {

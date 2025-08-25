@@ -7,33 +7,22 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
     view! {cx,
         script { r#"
             (() => {
+                // Initialize theme
                 let t = localStorage.getItem('theme');
                 if (!t) {
                     t = window.matchMedia('(prefers-color-scheme: dark)')
                         .matches ? 'dark' : 'light';
                 };
                 document.documentElement.setAttribute('data-theme', t);
+
             })();
+
         "# }
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title { (format!("Zarco - {}", title)) }
         meta(name="description", content="Gael Zarco: software engineer and CS student.")
-        link(
-            rel="preload",
-            href=".perseus/static/fonts/Dots.ttf",
-            as="font",
-            type="font/ttf",
-            crossorigin=""
-        )
-        link(
-            rel="preload",
-            href=".perseus/static/fonts/Geist.ttf",
-            as="font",
-            type="font/ttf",
-            crossorigin=""
-        )
         link(
             rel="preload",
             href=format!(".perseus/static/styles.css?={}", VER),
@@ -50,11 +39,8 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
             sizes="32x32"
         )
         style { r#"
-            html { color-scheme: light; }
-            @media (prefers-color-scheme: dark) {
-              html { color-scheme: dark; }
-            }
             @media (prefers-color-scheme: light) {
+              html { color-scheme: light; }
               :root {
                 --bg:#FbFdFf; --bgt:#FbFdFF77; --h:#0d0b0f; --p:#7F7F7F; --text-a:#A3A3A3;
                 --li-focus:#7F7F7F; --xp-left-p:#A3A3A3; --xp-right-a:#0d0b0f;
@@ -63,6 +49,7 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
               }
             }
             @media (prefers-color-scheme: dark) {
+              html { color-scheme: dark; }
               :root {
                 --bg:#0d0b0f; --bgt:#0d0b0f77; --h:#FbFdFf; --p:#A3A3A3; --text-a:#7F7F7F;
                 --li-focus:#A3A3A3; --xp-left-p:#7F7F7F; --xp-right-a:#FbFdFf;
@@ -72,15 +59,12 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
             }
             html { background: var(--bg); }
             body { background: var(--bg); }
-            .content {
-              animation: fade_in 250ms ease-in forwards;
-            }
             .theme_toggle {
               background: var(--bgt); 
               color: var(--border);
               border: 1px solid var(--border);
             }
-            .theme_toggle::before{
+            .theme_toggle::before {
               content:"";
               display: flex;
               align-items:center;
@@ -97,20 +81,10 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
                       mask-position: center;
                       mask-size: 100% 100%;
             }
-
             .theme_toggle::after{
               content: var(--label);
               font-size: 1em;
               margin: 0;
-            }
-            @media (prefers-reduced-motion: reduce) {
-              .content {
-                animation: none !important;
-              }
-            }
-            @keyframes fade_in {
-              from { opacity: 0; }
-              to   { opacity: 1; }
             }
         "#}
     }

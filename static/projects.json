@@ -1,35 +1,26 @@
 {
   "rgx": {
-    "title": "RGX",
-    "desc": "Software Rasterizer",
-    "abstr": "CPU-based rendering system that converts pixel data into 3D graphics. Parses .obj files and performs transformations, shading, and rasterization to render a 3D image.",
-    "goal": "Build a simple 3D-rendering pipeline to understand basic rasterization with a focus on limiting external dependencies.",
+    "slug": "RGX",
     "tools": ["Rust"],
     "skills": ["Linear Algebra", "File/String Parsing", "3D-Rendering Pipeline", "Rasterization"],
+    "skills_spanish": ["Álgebra lineal", "Análisis de archivos/cadenas", "Pipeline de renderizado 3D", "Rasterización"],
     "screenshots": { "/.perseus/static/assets/rgx-1.png": "RGX Human Head Render Example" },
-    "result": "Successfully achieved the primary goal of building a minimal 3D rendering pipeline with limited external dependencies. Through implementation of each component, I developed a comprehensive understanding of how a modern graphics pipeline converts data into performant renderings.",
     "links": [["Github", "@gaelzarco/rgx", "https://github.com/gaelzarco/rgx"]]
   },
   "moxie": {
-    "title": "Moxie",
-    "desc": "Full-Stack Social Media Application",
-    "abstr": "Social media application that mimics the general make-up of Twitter with some reduced functionality. Handles file uploads, post creation, user replies, user likes, and OAuth authentication.",
-    "goal": "Build a web-application that implements CRUD functionality using modern web development frameworks, authentication, UI libraries, cloud services, and automated workflows.",
+    "slug": "Moxie",
     "tools": ["Next.js", "TypeScript", "Tailwind CSS", "RPC", "MySQL", "AWS"],
     "skills": ["CRUD Operations", "Full-Stack Web Development", "UI/UX", "System Architecture & Design", "Cloud", "API Integrations"],
+    "skills_spanish": ["Operaciones CRUD", "Desarrollo web full-stack", "UI/UX", "Arquitectura y diseño de sistemas", "Nube", "Integraciones de API"],
     "screenshots": {},
-    "result": "Successfully built a fully functional social media web app that implements modern UI elements such as modals, toast notifications, smooth animations, responsive web design, and light/dark mode theme functionality. The back-end implements an API built using tRPC that enables functional state management. I developed proficiency with cloud integrations through AWS and PlanetScale, how to rate-limit an API effectively, and built a collaborative, user-content driven website.",
     "links": [["Github", "@gaelzarco/moxie", "https://github.com/gaelzarco/moxie"]]
   },
   "space": {
-    "title": "Space",
-    "desc": "Full-Stack, Real-Time Chat Application",
-    "abstr": "A web application that showcases real-time data communication through the use of web sockets. Implements OAuth authentication, a friend system, and real-time messaging between two users.",
-    "goal": "Build a simple 3D-rendering pipeline to understand basic rasterization with a focus on limiting external dependencies.",
+    "slug": "Space",
     "tools": ["Next.js", "TypeScript", "Tailwind CSS", "Redis", "WebSockets"],
     "skills": ["Full-Stack Web Development", "UI/UX", "System Architecture & Design", "Cloud", "REST APIs"],
+    "skills_spanish": ["Desarrollo web full-stack", "UI/UX", "Arquitectura y diseño de sistemas", "Nube", "APIs REST"],
     "screenshots": {},
-    "result": "Succesfully built a performant and responsive web application that utilizes web sockets to establish real-time, two-way message communication between users. It implements a friend system through the use of email addresses (tied to OAuth) and allows users to select who they want to message. All database entries are stored in a Redis database to maximize speed and responsiveness when sending data. This project resulted in a deep understanding of real-time data transfer, the latest Next.js features, and familiarity with in-memory databases.",
     "links": [["Github", "@gaelzarco/space", "https://github.com/gaelzarco/space"]]
   }
 }

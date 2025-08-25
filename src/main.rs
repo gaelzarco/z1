@@ -11,5 +11,6 @@ pub fn main<G: Html>() -> PerseusApp<G> {
         .template(crate::templates::project::get_template())
         .error_views(crate::error_views::get_error_views())
         .static_alias("/resume", "./static/GAEL_ZARCO.pdf")
+        .locales_and_translations_manager("en-US", &["es-ES"])
 }
 

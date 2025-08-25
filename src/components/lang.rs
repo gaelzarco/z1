@@ -1,0 +1,53 @@
+use perseus::prelude::*;
+use sycamore::prelude::*;
+
+#[component]
+pub fn toggle_button<G: Html>(cx: Scope) -> View<G> {
+    let value = create_signal(cx, Reactor::<G>::from_cx(cx).get_translator().get_locale());
+
+    view! { cx,
+        div(class="lang_toggle_container") {
+            div(class="lang_wrapper") {
+                select(
+                    id="lang",
+                    class="lang_toggle",
+                    aria-label="Toggle locale",
+                    bind:value=value,
+                    on:change=move |_| {
+                        #[cfg(client)]
+                        Reactor::<G>::from_cx(cx).switch_locale(value.get().as_str());
+                    }
+                ) {
+                    option(
+                        aria-label="Toggle es-ES",
+                        value="es-ES",
+                        selected=if value.get().as_str() == "es-ES" { true } else { false },
+                        on:click=move |_| {
+                            #[cfg(client)]
+                            {
+                                value.set("es-ES".to_string()); 
+                            }
+                        }
+                    ) { "ES" }
+                    option(
+                        aria-label="Toggle en-US",
+                        value="en-US",
+                        selected=if value.get().as_str() == "en-US" { true } else { false },
+                        on:click=move |_| {
+                            #[cfg(client)] 
+                            {
+                                value.set("en-US".to_string()); 
+                                Reactor::<G>::from_cx(cx).switch_locale(value.get().as_str());
+                            }
+                        }
+                    ) { "EN" }
+                }
+                img(
+                    class="arrow",
+                    src=".perseus/static/icons/caret-up.svg",
+                    alt=(t!(cx, "alt_arrow"))
+                )
+            }
+        }
+    }
+}

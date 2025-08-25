@@ -1,6 +1,7 @@
 use perseus::prelude::*;
 use sycamore::prelude::*;
 use crate::components::theme;
+use crate::components::lang;
 use crate::components::head;
 
 fn index_page<G: Html>(cx: Scope) -> View<G> {
@@ -12,9 +13,32 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
         reactor.preload(cx, "/project/space");
     }
 
+    let name_t           = t!(cx, "name");
+    let subtitle_t       = t!(cx, "subtitle");
+
+    let exp1_title       = t!(cx, "exp_one_title");
+    let exp1_desc        = t!(cx, "exp_one_desc");
+    let exp2_title       = t!(cx, "exp_two_title");
+    let exp2_desc        = t!(cx, "exp_two_desc");
+    let exp3_title       = t!(cx, "exp_three_title");
+    let exp3_desc        = t!(cx, "exp_three_desc");
+
+    let proj_one_url     = t!(cx, "proj_one_url");
+    let proj_one_title   = t!(cx, "proj_one_title");
+    let proj_one_desc    = t!(cx, "proj_one_desc");
+
+    let proj_two_url     = t!(cx, "proj_two_url");
+    let proj_two_title   = t!(cx, "proj_two_title");
+    let proj_two_desc    = t!(cx, "proj_two_desc");
+
+    let proj_three_url   = t!(cx, "proj_three_url");
+    let proj_three_title = t!(cx, "proj_three_title");
+    let proj_three_desc  = t!(cx, "proj_three_desc");
+
     view! {
         cx,
         main {
+            lang::toggle_button()
             theme::toggle_button()
             section(class="content") {
 
@@ -22,28 +46,25 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                     div(class="profile_left") {
                         img(
                             src=".perseus/static/assets/dot-circle-white.webp",
-                            alt="Dot Matrix Circle",
+                            alt=(t!(cx, "alt_dot_circle")),
                             loading="lazy",
                             height="95",
                             width="150"
                         )
                     }
                     div(class="profile_right") {
-                        h1 { "Gael Zarco" }
-                        p { "Software Engineer - CS Student" }
+                        h1 { (name_t) }
+                        p  { (subtitle_t) }
                     }
                 }
 
                 section(class="about_wrapper") {
-                    h2 { "About" }
-                    p {
-                        "Experienced in web development and IT support. Seeking part-time and internship opportunities while pursuing a bachelor's in computer science."
-                    }
+                    h2 { (t!(cx, "profile_header")) }
+                    p  { (t!(cx, "profile_desc")) }
                 }
 
                 section(class="generic_wrapper") {
-                    h2 { "Experience" }
-
+                    h2 { (t!(cx, "experience_header")) }
                     section(class="xp_item_wrapper") {
                         div(class="xp_item") {
                             div(class="xp_left") { p { "2024" } }
@@ -53,16 +74,14 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                     target="_blank",
                                     rel="noopener noreferrer"
                                 ) {
-                                    "Web Developer - 702 Pros"
+                                    (exp1_title)
                                     img(
                                         class="arrow",
                                         src=".perseus/static/icons/arrow-top-right.svg",
-                                        alt="Arrow"
+                                        alt=(t!(cx, "alt_arrow"))
                                     )
                                 }
-                                p {
-                                    "Built full-stack web applications using PHP with a focus on reducing external dependencies. Met tight deadlines and project milestones while simultaneously incorporating client feedback."
-                                }
+                                p { (exp1_desc) }
                             }
                         }
 
@@ -74,16 +93,14 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                     target="_blank",
                                     rel="noopener noreferrer"
                                 ) {
-                                    "IT Technician - Team Tech Solutions"
+                                    (exp2_title)
                                     img(
                                         class="arrow",
                                         src=".perseus/static/icons/arrow-top-right.svg",
-                                        alt="Arrow"
+                                        alt=(t!(cx, "alt_arrow"))
                                     )
                                 }
-                                p {
-                                    "Provided IT support, meeting Service Level Agreements, to health clinics and other businesses across the US. Reported directly to Director of Operations to track initiatives and discuss objectives to improve client feedback and support efficiency."
-                                }
+                                p { (exp2_desc) }
                             }
                         }
 
@@ -95,75 +112,72 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                     target="_blank",
                                     rel="noopener noreferrer"
                                 ) {
-                                    "Software Engineer Intern - Productos-AI"
-                                    img(
-                                        class="arrow",
-                                        src=".perseus/static/icons/arrow-top-right.svg", 
-                                        alt="Arrow"
-                                    )
-                                }
-                                p {
-                                    "Developed front-end functionality with a focus on security using React.js. Improved application responsiveness and user experience in a collaborative team environment."
-                                }
-                            }
-                        } }
-                }
-
-                section(class="generic_wrapper") {
-                    h2 { "Projects" }
-
-                    section(class="xp_item_wrapper") {
-                        div(class="xp_item") {
-                            div(class="xp_left") { p { "2025" } }
-                            div(class="xp_right") {
-                                a(href="/project/rgx") {
-                                    "RGX"
+                                    (exp3_title)
                                     img(
                                         class="arrow",
                                         src=".perseus/static/icons/arrow-top-right.svg",
-                                        alt="Arrow"
+                                        alt=(t!(cx, "alt_arrow"))
                                     )
                                 }
-                                p {
-                                    "Software rasterizer that parses .obj files and translates triangle coordinates into a render."
-                                }
-                            }
-                        }
-
-                        div(class="xp_item") {
-                            div(class="xp_left") { p { "2024" } }
-                            div(class="xp_right") {
-                                a(href="project/space") {
-                                    "Space"
-                                    img(
-                                        class="arrow",
-                                        src=".perseus/static/icons/arrow-top-right.svg",
-                                        alt="Arrow"
-                                    )
-                                }
-                                p { "Web application to chat in real-time." }
-                            }
-                        }
-
-                        div(class="xp_item") {
-                            div(class="xp_left") { p { "2023" } }
-                            div(class="xp_right") {
-                                a(href="/project/moxie") {
-                                    "Moxie"
-                                    img(
-                                        class="arrow",
-                                        src=".perseus/static/icons/arrow-top-right.svg",
-                                        alt="Arrow"
-                                    )
-                                }
-                                p { "Social media web application." }
+                                p { (exp3_desc) }
                             }
                         }
                     }
                 }
 
                 section(class="generic_wrapper") {
-                    h2 { "Links" }
+                    h2 { (t!(cx, "projects_header")) }
+
+                    section(class="xp_item_wrapper") {
+                        div(class="xp_item") {
+                            div(class="xp_left") { p { "2025" } }
+                            div(class="xp_right") {
+                                a( href=proj_one_url ) {
+                                    (proj_one_title)
+                                    img(
+                                        class="arrow",
+                                        src=".perseus/static/icons/arrow-top-right.svg",
+                                        alt=(t!(cx, "alt_arrow"))
+                                    )
+                                }
+                                p { (proj_one_desc) }
+                            }
+                        }
+
+                        div(class="xp_item") {
+                            div(class="xp_left") { p { "2024" } }
+                            div(class="xp_right") {
+                                a( href=proj_two_url ) {
+                                    (proj_two_title)
+                                    img(
+                                        class="arrow",
+                                        src=".perseus/static/icons/arrow-top-right.svg",
+                                        alt=(t!(cx, "alt_arrow"))
+                                    )
+                                }
+                                p { (proj_two_desc) }
+                            }
+                        }
+
+                        div(class="xp_item") {
+                            div(class="xp_left") { p { "2023" } }
+                            div(class="xp_right") {
+                                a( href=proj_three_url ) {
+                                    (proj_three_title)
+                                    img(
+                                        class="arrow",
+                                        src=".perseus/static/icons/arrow-top-right.svg",
+                                        alt=(t!(cx, "alt_arrow"))
+                                    )
+                                }
+                                p { (proj_three_desc) }
+                            }
+                        }
+                    }
+                }
+
+                section(class="generic_wrapper") {
+                    h2 { (t!(cx, "links_header")) }
 
                     section(class="xp_item_wrapper") {
                         div(class="xp_item") {
@@ -177,7 +191,7 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                     img(
                                         class="arrow",
                                         src=".perseus/static/icons/arrow-top-right.svg",
-                                        alt="Arrow"
+                                        alt=(t!(cx, "alt_arrow"))
                                     )
                                 }
                             }

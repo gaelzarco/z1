@@ -1,0 +1,57 @@
+{
+  "name": "Gael Zarco",
+  "subtitle": "Ingeniero de Software - Estudiante de Ciencias de la Computación",
+
+  "profile_header": "Sobre Mí",
+  "profile_desc": "Tengo experiencia en desarrollo web y soporte en TI. Busco oportunidades de medio tiempo y puestos de prácticas mientras termino la licenciatura en Ciencias de la Computación.",
+
+  "experience_header": "Experiencia",
+
+  "exp_one_title": "Desarrollador Web – 702 Pros",
+  "exp_one_desc": "Desarrollé aplicaciones web desde cero con PHP, reduciendo dependencias externas. Cumplí plazos exigentes mientras incorporaba la realimentación de los clientes.",
+
+  "exp_two_title": "Técnico en TI – Team Tech Solutions",
+  "exp_two_desc": "Proveí soporte de TI a clínicas de salud y empresas en los Estados Unidos, cumpliendo con los SLA y reportando al Director de Operaciones para mejorar la realimentación de los clientes y la eficiencia del soporte.",
+
+  "exp_three_title": "Practicante de Ingeniería de Software – Productos-AI",
+  "exp_three_desc": "Desarrollé funcionalidades front-end seguras con React.js, mejorando los tiempos de respuesta y la experiencia de usuario en un entorno colaborativo.",
+
+  "projects_header": "Proyectos",
+
+  "proj_one_title": "RGX",
+  "proj_one_url": "/es-ES/project/rgx",
+  "proj_one_desc": "Rasterizador de software que analiza archivos .obj y traduce coordenadas de triángulos en un renderizado 3D.",
+  "proj_one_abstr": "Sistema de renderizado que convierte datos de píxeles a gráficos 3D. Procesa archivos .obj y realiza transformaciones, sombreado, y rasterización para generar una imagen 3D.",
+  "proj_one_goal": "Construir un pipeline sencillo de renderizado 3D para comprender la rasterización básica, priorizando la reducción de dependencias externas.",
+  "proj_one_result": "Se alcanzó el objetivo principal de construir un pipeline mínimo de renderizado 3D con dependencias externas limitadas. Mediante la implementación de cada componente, desarrollé una comprensión integral de cómo un pipeline gráfico moderno convierte datos en renderizados de alto desempeño.",
+
+  "proj_two_title": "Space",
+  "proj_two_url": "/es-ES/project/space",
+  "proj_two_desc": "Aplicación web que permite a los usuarios comunicarse en tiempo real. Haz amigos y comunícate con ellos.",
+  "proj_two_abstr": "Aplicación web que demuestra comunicación de datos en tiempo real mediante websockets. Implementa autenticación OAuth, un sistema de amigos y mensajería en tiempo real entre dos usuarios.",
+  "proj_two_goal": "Construir un pipeline sencillo de renderizado 3D para comprender la rasterización básica, priorizando la reducción de dependencias externas.",
+  "proj_two_result": "Se construyó una aplicación web de alto desempeño y capacidad de respuesta que utiliza websockets para establecer comunicación bidireccional en tiempo real entre usuarios. Implementa un sistema de amigos mediante correos electrónicos, y permite elegir con quién conversar. Todas las entradas se almacenan en una base de datos Redis para maximizar la velocidad y la respuesta al enviar datos. Este proyecto derivó en un entendimiento profundo de la transferencia de datos en tiempo real, las funciones más recientes de Next.js y el uso de bases de datos en memoria.",
+
+  "proj_three_title": "Moxie",
+  "proj_three_url": "/es-ES/project/moxie",
+  "proj_three_desc": "Aplicación web de redes sociales con un interfaz moderno y animaciones fluidas.",
+  "proj_three_abstr": "Aplicación de redes sociales que emula la estructura de Twitter. Maneja carga de archivos, creación de publicaciones, respuestas, “me gusta” y autenticación OAuth.",
+  "proj_three_goal": "Construir una aplicación web que implemente funcionalidad CRUD usando frameworks modernos, autenticación, bibliotecas de UI, servicios en la nube y flujos de trabajo automatizados.",
+  "proj_three_result": "Se construyó una aplicación web de redes sociales que implementa elementos de interfazes modernos como modales, notificaciones, animaciones fluidas, diseño web responsivo y modo claro/oscuro. El backend implementa una API con tRPC que habilita una gestión de estado funcional. Desarrollé dominio en integraciones con la nube mediante AWS y PlanetScale, técnicas de rate limiting para API y la construcción de un sitio colaborativo impulsado por contenido de los usuarios.",
+
+  "links_header": "Enlaces",
+
+  "abstract_header": "Resumen",
+  "methods_header": "Métodos",
+  "goal_label": "Objetivo",
+  "tools_label": "Herramientas",
+  "skills_label": "Habilidades",
+  "screenshots_header": "Capturas de Pantalla",
+  "results_header": "Resultados",
+  "home_label": "Inicio",
+
+  "alt_dot_circle": "Círculo de matriz de puntos",
+  "alt_arrow": "Flecha",
+  "alt_caret": "Signo de Intercalación",
+  "home_url": "/es-ES"
+}

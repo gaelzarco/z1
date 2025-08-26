@@ -10,7 +10,7 @@ pub fn toggle_button<G: Html>(cx: Scope) -> View<G> {
         div(class="theme_toggle_container") {
             button(
                 class="theme_toggle", 
-                aria-label="Toggle theme",
+                aria-label="Toggle light/dark theme",
                 on:click=move |_| {
                     #[cfg(client)] 
                     _theme.set(toggle_theme()); 

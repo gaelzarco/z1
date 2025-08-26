@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 RUN useradd -m -u 10001 -s /usr/sbin/nologin appuser
 WORKDIR /app
 COPY --from=build /app/pkg /app/pkg
+COPY --from=build /app/translations /app/translations
 
 USER appuser
 EXPOSE 3000

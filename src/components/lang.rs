@@ -19,7 +19,7 @@ pub fn toggle_button<G: Html>(cx: Scope) -> View<G> {
                     }
                 ) {
                     option(
-                        aria-label="Toggle es-ES",
+                        aria-label="Toggle es-ES locale",
                         value="es-ES",
                         selected=if value.get().as_str() == "es-ES" { true } else { false },
                         on:click=move |_| {
@@ -30,14 +30,13 @@ pub fn toggle_button<G: Html>(cx: Scope) -> View<G> {
                         }
                     ) { "ES" }
                     option(
-                        aria-label="Toggle en-US",
+                        aria-label="Toggle en-US locale",
                         value="en-US",
                         selected=if value.get().as_str() == "en-US" { true } else { false },
                         on:click=move |_| {
                             #[cfg(client)] 
                             {
                                 value.set("en-US".to_string()); 
-                                Reactor::<G>::from_cx(cx).switch_locale(value.get().as_str());
                             }
                         }
                     ) { "EN" }
@@ -45,7 +44,7 @@ pub fn toggle_button<G: Html>(cx: Scope) -> View<G> {
                 img(
                     class="arrow",
                     src=".perseus/static/icons/caret-up.svg",
-                    alt=(t!(cx, "alt_arrow"))
+                    alt=(t!(cx, "alt_caret"))
                 )
             }
         }

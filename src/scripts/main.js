@@ -8,7 +8,7 @@ export function initTheme() {
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const current = savedTheme || (prefersDark ? "dark" : "light");
 
-  document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.setAttribute("data-theme", current);
   localStorage.setItem("theme", current);
 
   return current;

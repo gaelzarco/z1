@@ -121,7 +121,7 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
                 }
 
                 section(class="about_wrapper") {
-                    h1 { (title_t.clone()) }
+                    h1(style="margin-bottom: 20px;") { (title_t.clone()) }
                     p  { (desc_t.clone()) }
                 }
 

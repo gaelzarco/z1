@@ -105,7 +105,7 @@ main {
 h1,
 h2 {
   margin: 0px;
-  font-family: Dots, "SF Pro", -apple-system, sans-serif;
+  font-family: Dots;
   text-transform: uppercase;
 }
 
@@ -260,7 +260,7 @@ ul.focus {
 .bc_item {
   display: flex;
   gap: 0.375em;
-  font-family: Dots, "SF Pro", -apple-system, sans-serif;
+  font-family: Dots;
   text-transform: uppercase;
 }
 
@@ -282,7 +282,7 @@ ul.focus {
 }
 
 .theme_toggle {
-  font-family: Dots, "SF Pro", -apple-system, sans-serif;
+  font-family: Dots;
   text-transform: uppercase;
   min-width: 100px;
   min-height: 40px;
@@ -317,7 +317,7 @@ ul.focus {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-family: Dots, "SF Pro", -apple-system, sans-serif;
+  font-family: Dots;
   text-transform: uppercase;
   appearance: none;
   -webkit-appearance: none;

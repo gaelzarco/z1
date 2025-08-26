@@ -2,7 +2,7 @@
   "name": "Gael Zarco",
   "subtitle": "Ingeniero de Software - Estudiante de Ciencias de la Computación",
 
-  "profile_header": "Sobre Mí",
+  "profile_header": "Perfil",
   "profile_desc": "Tengo experiencia en desarrollo web y soporte en TI. Busco oportunidades de medio tiempo y puestos de prácticas mientras termino la licenciatura en Ciencias de la Computación.",
 
   "experience_header": "Experiencia",
@@ -42,7 +42,7 @@
   "links_header": "Enlaces",
 
   "abstract_header": "Resumen",
-  "methods_header": "Métodos",
+  "methods_header": "Formas",
   "goal_label": "Objetivo",
   "tools_label": "Herramientas",
   "skills_label": "Habilidades",
@@ -53,5 +53,10 @@
   "alt_dot_circle": "Círculo de matriz de puntos",
   "alt_arrow": "Flecha",
   "alt_caret": "Signo de Intercalación",
-  "home_url": "/es-ES"
+  "home_url": "/es-ES",
+
+  "404": "No se pudo encontrar esta página. Ve a la página de inicio.",
+  "400": "Algo salió mal. Vuelve a intentarlo.",
+  "500": "Se produjo un error interno. Vuelve a intentarlo.",
+  "network": "Se produjo un error de red. Verifica que tengas conexión a internet y vuelve a intentarlo."
 }

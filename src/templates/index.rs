@@ -7,6 +7,7 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
     #[cfg(client)]
     {
         let reactor = Reactor::<G>::from_cx(cx);
+        reactor.preload(cx, "/");
         reactor.preload(cx, "/project/rgx");
         reactor.preload(cx, "/project/moxie");
         reactor.preload(cx, "/project/space");

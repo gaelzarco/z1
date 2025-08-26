@@ -5,6 +5,12 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
     const VER: &str = env!("CARGO_PKG_VERSION");
 
     view! {cx,
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(
+            rel="preload",
+            as="style",
+            href=format!(".perseus/static/styles.css?={}", VER)
+        )
         script { r#"
             (() => {
                 // Initialize theme
@@ -18,16 +24,8 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
             })();
 
         "# }
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title { (format!("Zarco - {}", title)) }
-        meta(name="description", content="Gael Zarco: software engineer and CS student.")
-        link(
-            rel="preload",
-            href=format!(".perseus/static/styles.css?={}", VER),
-            as="style"
-        )
+        meta(name="description", content="Gael Zarco: Software engineer and CS student.")
         link(
             rel="stylesheet",
             href=format!(".perseus/static/styles.css?={}", VER),

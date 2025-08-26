@@ -53,5 +53,10 @@
   "alt_dot_circle": "Dot Matrix Circle",
   "alt_arrow": "Arrow",
   "alt_caret": "Caret",
-  "home_url": "/en-US"
+  "home_url": "/en-US",
+
+  "404": "This page could not be found. Please head to the home page.",
+  "400": "Something went wrong. Please try again.",
+  "500": "An internal error occured. Please try again.",
+  "network": "Network error occured. Verify you have an internet connection and try again."
 }

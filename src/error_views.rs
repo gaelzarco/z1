@@ -26,7 +26,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
 
                                 section(class="about_wrapper") {
                                     h1 { (status) }
-                                    p { "This page could not be found. Please head to the home page." }
+                                    p { (t!(cx, "404")) }
                                 }
 
                             }
@@ -52,7 +52,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
 
                                 section(class="about_wrapper") {
                                     h1 { (status) }
-                                    p { "Something went wrong. Please try again." }
+                                    p { (t!(cx, "400")) }
                                 }
 
                             }
@@ -78,7 +78,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
 
                                 section(class="about_wrapper") {
                                     h1 { (status) }
-                                    p { "An internal error occured. Please try again." }
+                                    p { (t!(cx, "500")) }
                                 }
 
                             }
@@ -93,7 +93,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                         section(class="modal") {
                             section {
                                 h1 { "4XX" }
-                                p { "Something went wrong. Please try again." }
+                                p { (t!(cx, "400")) }
                             }
                         }
                     }
@@ -106,7 +106,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                         section(class="modal") {
                             section {
                                 h1 { "4XX" }
-                                p { "Network error occured. Verify you have an internet connection and try again." }
+                                p { (t!(cx, "network")) }
                             }
                         }
                     }
@@ -119,7 +119,7 @@ pub fn get_error_views<G: Html>() -> ErrorViews<G> {
                         section(class="modal") {
                             section {
                                 h1 { "5XX" }
-                                p { "An internal error occured. Please try again." }
+                                p { (t!(cx, "500")) }
                             }
                         }
                     }

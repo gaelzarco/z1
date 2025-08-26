@@ -2,8 +2,7 @@ use perseus::prelude::*;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use sycamore::prelude::*;
-use crate::components::theme;
-use crate::components::lang;
+use crate::components::controls;
 use crate::components::head;
 
 const PROJECTS_JSON: &str = include_str!("../../static/projects.json");
@@ -109,8 +108,7 @@ fn project_page<G: Html>(cx: Scope, state: &ProjectPageStateRx) -> View<G> {
 
     view! { cx,
         main {
-            lang::toggle_button()
-            theme::toggle_button()
+            controls::all()
             section(class="content") {
 
                 nav(class="bc_wrapper") {

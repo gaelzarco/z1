@@ -1,3 +1,4 @@
-pub mod theme;
-pub mod lang;
 pub mod head;
+pub mod theme;
+pub mod locale;
+pub mod controls;

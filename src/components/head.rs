@@ -64,7 +64,11 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
               color: var(--border);
               border: 1px solid var(--border);
             }
-            .theme_toggle::before {
+            .theme_toggle::before{
+              content: var(--label);
+              font-size: 1em;
+            }
+            .theme_toggle::after {
               content:"";
               display: flex;
               align-items:center;
@@ -80,11 +84,6 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
                       mask-repeat: no-repeat;
                       mask-position: center;
                       mask-size: 100% 100%;
-            }
-            .theme_toggle::after{
-              content: var(--label);
-              font-size: 1em;
-              margin: 0;
             }
         "#}
     }

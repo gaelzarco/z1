@@ -1,7 +1,6 @@
 use perseus::prelude::*;
 use sycamore::prelude::*;
-use crate::components::theme;
-use crate::components::lang;
+use crate::components::controls;
 use crate::components::head;
 
 fn index_page<G: Html>(cx: Scope) -> View<G> {
@@ -38,8 +37,7 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
     view! {
         cx,
         main {
-            lang::toggle_button()
-            theme::toggle_button()
+            controls::all()
             section(class="content") {
 
                 section(class="profile_wrapper") {

@@ -211,6 +211,23 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                 }
                             }
                         }
+
+                        div(class="xp_item") {
+                            div(class="xp_left") { p { "Resume" } }
+                            div(class="xp_right") {
+                                a(
+                                    href="https://xarco.net/resume",
+                                    target="_blank"
+                                ) {
+                                    "/resume"
+                                    img(
+                                        class="arrow",
+                                        src=".perseus/static/icons/arrow-top-right.svg",
+                                        alt=(t!(cx, "alt_arrow"))
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
             }

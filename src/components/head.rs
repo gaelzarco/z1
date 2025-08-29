@@ -24,17 +24,30 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
             })();
 
         "# }
-        title { (format!("Zarco - {}", title)) }
-        meta(name="description", content="Gael Zarco: Software engineer and CS student.")
+        title { (format!("Gael Zarco - {}", title)) }
+        meta(name="description", content="Software engineer and CS student.")
         link(
             rel="stylesheet",
             href=format!(".perseus/static/styles.css?={}", VER),
+        )
+        link( rel="icon",
+            href=".perseus/static/assets/favicon_light.ico",
+            type="image/x-icon",
+            sizes="32x32"
         )
         link(
             rel="icon",
             href=".perseus/static/assets/favicon.ico",
             type="image/x-icon",
-            sizes="32x32"
+            sizes="32x32",
+            media="(prefers-color-scheme: light)"
+        )
+        link(
+            rel="icon",
+            href=".perseus/static/assets/favicon_light.ico",
+            type="image/x-icon",
+            sizes="32x32",
+            media="(prefers-color-scheme: dark)"
         )
         style { r#"
             @media (prefers-color-scheme: light) {

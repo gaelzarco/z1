@@ -4,7 +4,7 @@
     "tools": ["Rust"],
     "skills": ["Linear Algebra", "File/String Parsing", "3D-Rendering Pipeline", "Rasterization"],
     "skills_spanish": ["Álgebra lineal", "Análisis de archivos/cadenas", "Pipeline de renderizado 3D", "Rasterización"],
-    "screenshots": { "/.perseus/static/assets/rgx-1.png": "RGX Human Head Render Example" },
+    "screenshots": { "/.perseus/static/assets/rgx-0.webp": "RGX Human Head Render Example" },
     "links": [["Github", "@gaelzarco/rgx", "https://github.com/gaelzarco/rgx"]]
   },
   "moxie": {

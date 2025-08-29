@@ -43,7 +43,7 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                 section(class="profile_wrapper") {
                     div(class="profile_left") {
                         img(
-                            src=".perseus/static/assets/dot-circle-white.webp",
+                            src=".perseus/static/assets/dot-circle.webp",
                             alt=(t!(cx, "alt_dot_circle")),
                             loading="lazy",
                             height="95",
@@ -194,9 +194,25 @@ fn index_page<G: Html>(cx: Scope) -> View<G> {
                                 }
                             }
                         }
+
+                        div(class="xp_item") {
+                            div(class="xp_left") { p { "Handshake" } }
+                            div(class="xp_right") {
+                                a(
+                                    href="https://csn.joinhandshake.com/profiles/gaelzarco",
+                                    target="_blank"
+                                ) {
+                                    "@gaelzarco"
+                                    img(
+                                        class="arrow",
+                                        src=".perseus/static/icons/arrow-top-right.svg",
+                                        alt=(t!(cx, "alt_arrow"))
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
-
             }
         }
     }

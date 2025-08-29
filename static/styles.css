@@ -182,13 +182,13 @@ ul.focus {
   display: flex;
   justify-content: left;
   align-items: center;
-  gap: 2em;
+  gap: 4em;
   margin-bottom: 30px;
 }
 
 .profile_left img {
   height: 95px;
-  width: 95px;
+  width: 112px;
   object-fit: cover;
 }
 
@@ -232,7 +232,7 @@ ul.focus {
 }
 
 .xp_left {
-  min-width: 4em;
+  min-width: 7em;
 }
 
 .xp_left p {
@@ -365,9 +365,12 @@ ul.focus {
     padding: 4em 1em;
   }
 
+  .profile_wrapper {
+    gap: 2em;
+  }
   .profile_left img {
     height: 80px;
-    width: 80px;
+    width: 96px;
   }
 
   .xp_item_wrapper {
@@ -379,17 +382,7 @@ ul.focus {
   }
 
   .xp_left {
-    min-width: 5em;
-  }
-}
-
-@media (max-width: 640px) {
-  .profile_wrapper {
-    gap: 1em;
-  }
-
-  .xp_left {
-    min-width: 4em;
+    min-width: 6em;
   }
 }
 

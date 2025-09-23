@@ -62,7 +62,7 @@ pub fn builder(cx: Scope, title: String) -> View<SsrNode> {
             @media (prefers-color-scheme: dark) {
               html { color-scheme: dark; }
               :root {
-                --bg:#0d0b0f; --bgt:#0d0b0f77; --h:#FbFdFf; --p:#A3A3A3; --text-a:#7F7F7F;
+                --bg:#020202; --bgt:#0d0b0f77; --h:#FbFdFf; --p:#A3A3A3; --text-a:#7F7F7F;
                 --li-focus:#A3A3A3; --xp-left-p:#7F7F7F; --xp-right-a:#FbFdFf;
                 --profile-img-filter:invert(0); --arrow-filter:invert(1);
                 --bc-item:white; --border:#A3A3A3; --label:"Light"; --icon:url(".perseus/static/icons/sun.svg");

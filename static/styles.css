@@ -17,9 +17,9 @@
 
 :root {
   /* Colors */
-  --black: #05050b;
+  --black: #000000;
   --white: #FbFdFf;
-  --black-trans: #05050b77;
+  --black-trans: #00000077;
   --white-trans: #FbFdFF77;
   --gray: #A3A3A3;
   --gray-secondary: #7F7F7F;
